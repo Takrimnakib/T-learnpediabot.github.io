@@ -2,84 +2,96 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>Mobile Chatbot</title>
+  <title>Chatbot</title>
   <style>
     body {
       font-family: Arial, sans-serif;
-      background-color: #f1f1f1;
+      background-color: #007bff;
       margin: 0;
       padding: 0;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
     }
 
-    /* Mobile Styles */
-    @media (max-width: 60px) {
-      .chat-window {
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-end;
-        padding: 5px;
-      }
+    .chat-window {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      height: 100%;
+      margin: 2%;
+    }
 
-      .chat-log {
-        background-color: #fff;
-        border-radius: 5px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        padding: 20px;
-        box-sizing: border-box;
-        margin-bottom: 20px;
-      }
+    .chat-log {
+      flex-grow: 1;
+      overflow-y: scroll;
+      background-color: #fff;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      padding: 2em;
+      box-sizing: border-box;
+      margin-bottom: 2%;
+    }
 
-      .message {
-        margin-bottom: 10px;
-      }
+    .message {
+      margin-bottom: 1em;
+      margin-left: 2%;
+    }
 
-      .message-content {
-        padding: 5px 10px;
-        border-radius: 5px;
-      }
+    .message-content {
+      padding: 0.5em 1em;
+      border-radius: 5px;
+    }
 
-      .user-message .message-content {
-        background-color: #aeaaaa2f;
-        color: #0d0c0c;
-        text-align: left;
-      }
+    .user-message .message-content {
+      background-color: #aeaaaa2f;
+      color: #0d0c0c;
+      text-align: left;
+    }
 
-      .bot-message .message-content {
-        background-color: #95919171;
-        color: #333;
-        text-align: left;
-      }
+    .bot-message .message-content {
+      background-color: #95919171;
+      color: #333;
+      text-align: left;
+    }
 
-      .input-container {
-        display: flex;
-        align-items: center;
-        padding: 5px;
-        background-color: #fff;
-        border-radius: 5px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-      }
+    .input-container {
+      display: flex;
+      align-items: center;
+      padding: 1em;
+      background-color: #fff;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      margin: 2%;
+    }
 
-      .input-container input[type="text"] {
-        flex: 1;
-        padding: 10px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        outline: none;
-      }
+    .input-container input[type="text"] {
+      flex: 1;
+      padding: 1em;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      outline: none;
+    }
 
-      .input-container button {
-        padding: 10px;
-        border: none;
-        background-color: #007bff;
-        color: #fff;
-        border-radius: 5px;
-        margin-top: 10px;
-        cursor: pointer;
-      }
+    .input-container button {
+      padding: 1em;
+      border: none;
+      background-color: #007bff;
+      color: #fff;
+      border-radius: 5px;
+      margin-left: 2%;
+      cursor: pointer;
     }
 
     .highlight {
       color: red;
+    }
+
+    @media (max-width: 768px) {
+      .input-container {
+        margin: 1%;
+      }
     }
   </style>
 </head>
@@ -91,7 +103,6 @@
       <button id="sendButton">প্রেরণ করুন</button>
     </div>
   </div>
-
 
   <script>
     const chatLog = document.getElementById('chatLog');
