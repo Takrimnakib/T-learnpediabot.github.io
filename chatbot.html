@@ -32,6 +32,7 @@
       padding: 2em;
       box-sizing: border-box;
       margin-bottom: 2%;
+      font-size: 24px; /* Increase font size for chat log */
     }
 
     .message {
@@ -48,51 +49,48 @@
       background-color: #aeaaaa2f;
       color: #0d0c0c;
       text-align: left;
+      font-size: 24px; /* Increase font size for user messages */
     }
 
     .bot-message .message-content {
       background-color: #95919171;
       color: #333;
       text-align: left;
+      font-size: 24px; /* Increase font size for bot messages */
     }
 
-  .input-container {
+    .input-container {
       display: flex;
-      align-items: center; /* Center input vertically */
-      padding: 10px;
+      align-items: center;
+      padding: 1em;
       background-color: #fff;
       border-radius: 5px;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      margin: 2%;
     }
 
     .input-container input[type="text"] {
       flex: 1;
-      padding: 10px;
+      padding: 1em;
       border: 1px solid #ccc;
       border-radius: 5px;
       outline: none;
-      font-size: 40px; /* Increase font size */
-      max-width: 20%; /* Make the input box shorter */
+      font-size: 24px; /* Increase font size for the input box */
     }
 
     .input-container button {
-      padding: 10px;
+      padding: 1em;
       border: none;
       background-color: #007bff;
       color: #fff;
       border-radius: 5px;
-      margin-left: 10px;
+      margin-left: 2%;
       cursor: pointer;
+      font-size: 24px; /* Increase font size for the button */
     }
 
     .highlight {
       color: red;
-    }
-
-    @media (max-width: 768px) {
-      .input-container {
-        margin: 1%;
-      }
     }
   </style>
 </head>
@@ -104,59 +102,5 @@
       <button id="sendButton">প্রেরণ করুন</button>
     </div>
   </div>
-
-  <script>
-    const chatLog = document.getElementById('chatLog');
-    const userInput = document.getElementById('userInput');
-    const sendButton = document.getElementById('sendButton');
-
-    userInput.addEventListener('keydown', (event) => {
-      if (event.key === 'Enter') {
-        event.preventDefault();
-        sendButton.click();
-      }
-    });
-
-    sendButton.addEventListener('click', () => {
-      const userMessage = userInput.value;
-      addMessage(userMessage, 'user');
-      respondToUser(userMessage);
-      userInput.value = '';
-    });
-
-    function addMessage(message, sender) {
-      const messageDiv = document.createElement('div');
-      messageDiv.classList.add('message', sender + '-message');
-      const messageContent = document.createElement('div');
-      messageContent.classList.add('message-content');
-      messageContent.innerHTML = message;
-      messageDiv.appendChild(messageContent);
-      chatLog.appendChild(messageDiv);
-      chatLog.scrollTop = chatLog.scrollHeight;
-    }
-
-    function respondToUser(userMessage) {
-      userMessage = userMessage.toLowerCase();
-      
-      const responses = {
-          'হাল খবর?': 'আমি ভালো আছি, আপনি কেমন আছেন?',
-          'hi': 'আমি ভালো আছি, আপনি কেমন আছেন?',
-          'বৈষ্ণব পদাবলি': 'বৈষ্ণব পদাবলি বা বৈষ্ণব পদাবলী বৈষ্ণব ধর্মতত্ত্বের রসভাষ্য নামে খ্যাত এক শ্রেণীর ধর্মসঙ্গীত সংগ্রহ,<br>সূচনা ঘটে চর্তুদশ শতকে বিদ্যাপতি ও চণ্ডীদাস-এর সময়ে, তবে ষোড়শ শতকে এই সাহিত্যের বিকাশ হয়।',
-      };
-
-      const response = responses[userMessage] || 'দুঃখিত, আমি বুঝতে পারছি না।';
-      addMessage(highlightMatchingWords(userMessage, response), 'bot');
-    }
-
-    function highlightMatchingWords(userInput, response) {
-      const userWords = userInput.split(' ');
-      userWords.forEach(word => {
-        if (response.includes(word)) {
-          response = response.replace(new RegExp(word, 'g'), `<span class="highlight">${word}</span>`);
-        }
-      });
-      return response;
-    }
-  </script>
 </body>
 </html>
